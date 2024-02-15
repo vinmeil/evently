@@ -1,10 +1,9 @@
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 
 export default function Home() {
   return (
     <main>
-      <Button variant="destructive">Delete</Button>
+      <h1 className="text-4xl">Evently</h1>
     </main>
   );
 }
