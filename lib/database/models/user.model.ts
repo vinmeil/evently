@@ -22,7 +22,7 @@ const UserSchema = new Schema({
   },
   lastName: {
     type: String,
-    required: true,
+    // required: true,
   },
   photo: {
     type: String,
