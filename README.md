@@ -53,7 +53,7 @@ app
 
 With this, the initial setup for `Next.js` is done, feel free to do anything else such as create new folders (e.g. a `shared` folder containing `Header.tsx`, `Footer.tsx`, etc) or install other packages
 
-###OPTIONAL STEPS (Installing `shadcn` and `uploadthing`)
+OPTIONAL STEPS (Installing `shadcn` and `uploadthing`)
 
 For easy UI management, install `shadcn`:
 
