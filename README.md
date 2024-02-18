@@ -222,3 +222,9 @@ export async function createUser(user: CreateUserParams) {
   }
 }
 ```
+
+## Create Other Parts of Your Application
+
+You can create whatever else you need in your app after all of the above steps are said and done. The most complex aspect of this project will be adding the functionality of creating and updating events, in which we will be using a form. Below will be instructions on how to create forms using `shadcn` as that is what is being used in this project.
+
+Visit the [`shadcn` form documentation](https://ui.shadcn.com/docs/components/form). Any additional steps will be listed below.
