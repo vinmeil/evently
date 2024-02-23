@@ -97,6 +97,24 @@ export default authMiddleware({
 Look at the rest of the `clerk` documentation to see if anything is missing or if there are any other features you want to implement in your app (scroll to the bottom of the previously opened docs). After all that, go to the `clerk` dashboard for your project, go to
 `User & Authentication > Email, Phone, Username` and set up your user and authentication based on your needs.
 
+EXTRA STEPS:
+
+If you require getting a `userId`, which is automatically given as `_id` by `mongoose`, in your project, there is 1 extra step that must be done in the `clerk` dashboard. Go to your project's `clerk` dashboard and go to `Sessions > Customize session token`. Click on edit and add the following code:
+
+```ts
+{
+  "userId": "{{user.public_metadata.userId}}"
+}
+```
+
+This ensures that you get back the actual `userId` string instead of getting a `JSON` in the form of:
+
+```ts
+{
+  "userId": "<userId goes here>",
+}
+```
+
 ## Setup MongoDB Database Connection
 
 Install `mongodb` and `mongoose` in your project:
