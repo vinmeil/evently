@@ -14,11 +14,14 @@ import { eventFormSchema } from "@/lib/validator";
 import { eventDefaultValues } from "@/constants";
 import Dropdown from "./Dropdown";
 import FileUploader from "./FileUploader";
+import { useUploadThing } from "@/lib/uploadthing";
 
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { createEvent } from "@/lib/actions/event.actions";
 
 type EventFormProps = {
   userId: string;
@@ -28,6 +31,9 @@ type EventFormProps = {
 const EventForm = ({ userId, type }: EventFormProps) => {
   const initialValues = eventDefaultValues;
   const [files, setFiles] = useState<File[]>([])
+  const router = useRouter();
+
+  const { startUpload } = useUploadThing("imageUploader");
 
   const form = useForm<z.infer<typeof eventFormSchema>>({
     resolver: zodResolver(eventFormSchema),
@@ -36,8 +42,35 @@ const EventForm = ({ userId, type }: EventFormProps) => {
     },
   })
 
-  function onSubmit(values: z.infer<typeof eventFormSchema>) {
-    console.log(values)
+  const onSubmit = async (values: z.infer<typeof eventFormSchema>) => {
+    let uploadedImageUrl = values.imageUrl;
+
+    if (files.length > 0) {
+      const uploadedImages = await startUpload(files);
+
+      if (!uploadedImages) {
+        return;
+      }
+
+      uploadedImageUrl = uploadedImages[0].url;
+    }
+
+    if (type === "Create") {
+      try {
+        const newEvent = await createEvent({
+          event: {...values, imageUrl: uploadedImageUrl },
+          userId,
+          path: "/profile"
+        })
+
+        if (newEvent) {
+          form.reset();
+          router.push(`/events/${newEvent._id}`)
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
   }
 
   return (
@@ -188,7 +221,7 @@ const EventForm = ({ userId, type }: EventFormProps) => {
                           <FormControl className="h-72">
                             <div className="flex items-center">
                               <label htmlFor="isFree" className="whitespace-nowrap pr-3 leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Free Ticket</label>
-                              <Checkbox id="isFree" className="mr-2 h-5 w-5 border-2 border-primary-500" />
+                              <Checkbox id="isFree" className="mr-2 h-5 w-5 border-2 border-primary-500" onCheckedChange={field.onChange}  />
                             </div>
                           </FormControl>
                           <FormMessage />
