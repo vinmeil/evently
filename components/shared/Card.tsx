@@ -42,7 +42,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
         {!hidePrice &&
           <div className="flex gap-2">
             <span className="p-semibold-14 w-min rounded-full bg-green-100 px-4 py-1 text-green-600/90">{event.isFree ? "FREE" : `$${event.price}`}</span>
-            <p className="p-semibold-14 w-min rounded-full bg-gray-500/10 px-4 py-1 text-grey-500">{event.category.name}</p>
+            <p className="p-semibold-14 rounded-full bg-gray-500/10 px-4 py-1 text-grey-500 line-clamp-1">{event.category.name}</p>
           </div>
         }
 
