@@ -1,3 +1,4 @@
+NOTE: This project serves as a refresher for myself on `mongodb` and user authentication.
 # Step by step project creation process
 
 Below will be the step by step process on how to create this project, starting from the initial set up all the way until the complete product.
