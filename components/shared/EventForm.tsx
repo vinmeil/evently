@@ -192,7 +192,7 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
                       onChange={(date: Date) => field.onChange(date)}
                       showTimeSelect
                       timeInputLabel="Time: "
-                      dateFormat="dd/mm/yyyy hh:mm aa"
+                      dateFormat="dd/MM/yyyy hh:mm aa"
                       wrapperClassName="datePicker"
                     />
                   </div>
@@ -216,7 +216,7 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
                       onChange={(date: Date) => field.onChange(date)}
                       showTimeSelect
                       timeInputLabel="Time: "
-                      dateFormat="dd/mm/yyyy hh:mm aa"
+                      dateFormat="dd/MM/yyyy hh:mm aa"
                       wrapperClassName="datePicker"
                     />
                   </div>
